@@ -1,0 +1,14 @@
+#DOMAIN:DEV:ID:SHARED(no|yes):TOBEDONE(create|delete)
+#GENERATED CONFIGURATION FILE AT {{ ansible_date_time.iso8601 }}
+#FOR INFORMATION *ONLY*, {{ inventory_hostname }} HOSTED ON CDOM {{ primary_cdom }}
+{% if lun_list | length > 0 -%}
+# TOTAL LUNS: {{ lun_list | length }} (IDs {{ current_disk }} to {{ current_disk + lun_list | length - 1 }})
+{%- endif %}
+
+{#- Loop with whitespace control to avoid empty lines -#}
+{% for lun in lun_list -%}
+{{ inventory_hostname }}:{{ lun }}:{{ current_disk + loop.index0 }}:no:create
+{% else -%}
+{#- Optional: Uncomment below if you want a placeholder when list is empty -#}
+{# # No LUNs to configure for {{ inventory_hostname }} #}
+{%- endfor %}
