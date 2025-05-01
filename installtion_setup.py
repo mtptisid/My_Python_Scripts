@@ -247,16 +247,7 @@ def run_agent_management():
     ).strip()
     if not install_path:
         install_path = "./my-agent"
-    print_formatted_text(FormattedText([
-        ('class:output-dot', '◇  '),
-        ('class:output-header', 'Path:'),
-        ('', '\n'),
-        ('', '│  '),
-        ('class:default', install_path),
-        ('', '\n'),
-        ('', '│'),
-        ('', '\n')
-    ]), style=style, end='')
+    print_formatted_text(FormattedText([('', '│'), ('', '\n')]), style=style, end='')
     sys.stdout.flush()
 
     # Step 2: Non-root user
@@ -273,16 +264,7 @@ def run_agent_management():
         ).strip()
         if not non_root_user:
             non_root_user = "user"
-        print_formatted_text(FormattedText([
-            ('class:output-dot', '◇  '),
-            ('class:output-header', 'Non-root user name:'),
-            ('', '\n'),
-            ('', '│  '),
-            ('class:default', non_root_user),
-            ('', '\n'),
-            ('', '│'),
-            ('', '\n')
-        ]), style=style, end='')
+        print_formatted_text(FormattedText([('', '│'), ('', '\n')]), style=style, end='')
         sys.stdout.flush()
 
     # Step 3: Action selection
@@ -304,16 +286,7 @@ def run_agent_management():
             ).strip()
             if not non_root_user:
                 non_root_user = "user"
-            print_formatted_text(FormattedText([
-                ('class:output-dot', '◇  '),
-                ('class:output-header', 'Non-root user name:'),
-                ('', '\n'),
-                ('', '│  '),
-                ('class:default', non_root_user),
-                ('', '\n'),
-                ('', '│'),
-                ('', '\n')
-            ]), style=style, end='')
+            print_formatted_text(FormattedText([('', '│'), ('', '\n')]), style=style, end='')
             sys.stdout.flush()
         version_options = ["1.0.0", "2.0.0", "Latest"]
         version = select_menu("Select version:", version_options, SUB_COLOR_MAP)
