@@ -14,8 +14,6 @@ from prompt_toolkit.shortcuts import print_formatted_text
 style = Style.from_dict({
     'promptname': 'fg:#ffffff',  # White for prompt names (e.g., "Path:")
     'prompttext': 'fg:#00b7eb',  # Sky blue for outer dots (◇, ◆, └)
-    # Alternative: 'prompttext': 'fg:#00b7eb blink'  # Blinking sky blue (uncomment for iTerm2)
-    # Fallback: 'prompttext': 'fg:#00ffff'  # Cyan if sky blue fails
     'output-dot': 'fg:#00ff00',  # Green for dots in final output
     'output-header': 'fg:#ffffff',  # White for headers in final output
     'output-done': 'fg:#00ff00 blink',  # Green blinking for "Done"
@@ -88,10 +86,10 @@ SUB_COLOR_MAP = {
     "1.0.0": "#66ffff",      # Light Cyan
     "2.0.0": "#ff99ff",      # Light Magenta
     "Latest": "#cccccc",     # Light White
-    "Current to next version": "#66ffff",      # Light Cyan
-    "Current to next 2 versions": "#ff99ff",   # Light Magenta
-    "Current to previous version": "#66ffff",  # Light Cyan
-    "Current to previous 2 versions": "#ff99ff" # Light Magenta
+    "4.0.0": "#66ffff",      # Light Cyan
+    "5.0.0": "#ff99ff",   # Light Magenta
+    "V2.0.0": "#66ffff",  # Light Cyan
+    "V1.0.0": "#ff99ff" # Light Magenta
 }
 
 # Prompt session for text input
@@ -124,10 +122,10 @@ def select_menu(prompt, options, color_map):
             "1.0.0": "1.0.0",
             "2.0.0": "2.0.0",
             "Latest": "latest",
-            "Current to next version": "current-to-next-version",
-            "Current to next 2 versions": "current-to-next-2-versions",
-            "Current to previous version": "current-to-prev-version",
-            "Current to previous 2 versions": "current-to-prev-2-versions",
+            "4.0.0": "current-to-next-version",
+            "5.0.0": "current-to-next-2-versions",
+            "V2.0.0": "current-to-prev-version",
+            "V1.0.0": "current-to-prev-2-versions",
         }
         option_light_style_map = {
             "Install": "install-light",
@@ -145,10 +143,10 @@ def select_menu(prompt, options, color_map):
             "1.0.0": "1.0.0-light",
             "2.0.0": "2.0.0-light",
             "Latest": "latest-light",
-            "Current to next version": "current-to-next-version-light",
-            "Current to next 2 versions": "current-to-next-2-versions-light",
-            "Current to previous version": "current-to-prev-version-light",
-            "Current to previous 2 versions": "current-to-prev-2-versions-light",
+            "4.0.0": "current-to-next-version-light",
+            "5.0.0": "current-to-next-2-versions-light",
+            "V2.0.0": "current-to-prev-version-light",
+            "V1.0.0": "current-to-prev-2-versions-light",
         }
         lines = []
         # Prompt line
@@ -315,9 +313,9 @@ def run_agent_management():
 
     elif action in ["Upgrade", "Downgrade"]:
         if action == "Upgrade":
-            options = ["Current to next version", "Current to next 2 versions"]
+            options = ["4.0.0", "5.0.0"]
         else:
-            options = ["Current to previous version", "Current to previous 2 versions"]
+            options = ["V2.0.0", "V1.0.0"]
         choice = select_menu(f"Select {action.lower()} option:", options, SUB_COLOR_MAP)
         print_formatted_text(FormattedText([
             (f'fg:{MAIN_COLOR_MAP[action]}', f"│  {action}ing {install_path} to {choice}..."),
