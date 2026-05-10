@@ -1,5 +1,4 @@
 import sys
-sys.path.insert(0, '/home/claude')
 from pdf_utils import *
 
 OUT = '/mnt/user-data/outputs/01_DSA_Mastery_Roadmap.pdf'
